@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Список тренеров</title>
+</head>
+<body>
+<div class="container-fluid p-0">
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Родной город</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="coach: ${coaches}">
+                    <td>
+                        <a th:text="${coach.id}" th:href="@{/coach/{id}(id=${coach.id})}"></a>
+                    </td>
+                    <td th:text="${coach.name}"></td>
+                    <td th:text="${coach.city}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-4">
+                <a class="btn btn-success w-100" th:href="@{/coach/create}">Добавить тренера</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
