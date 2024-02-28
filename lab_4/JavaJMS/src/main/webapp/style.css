@@ -1,0 +1,6 @@
+.containerQuestion {
+  display: block;
+  width: 600px;
+  height: 100px;
+  border: 10px double black;
+}

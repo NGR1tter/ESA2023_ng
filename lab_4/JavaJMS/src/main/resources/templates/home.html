@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<!DOCTYPE html>
+<head>
+    <h1 align="center" valign="middle">Welcome on my lab 2 - Questions platform</h1>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body align="center" valign="middle">
+<div class="container" align="center" valign="middle">
+    <div class="question-input">
+        <div class="SignIn">
+            <h2>
+            You sign in as <span th:remove="tag" sec:authentication="name">
+            </span>!
+                <a th:href="@{/logout}">Log Out</a>
+            </h2>
+
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <span> You can create a question </span>
+            <a th:href="@{/question}">Manage Questions</a>
+        </div>
+    </div>
+
+    <div class="questions">
+        <div th:if="${not #lists.isEmpty(questions)}">
+             <span th:each="question, iterstat : ${questions}">
+                <div class="containerQuestion">
+                    <tr>
+                        <div class="questionId">
+                            ID question:
+                            <td th:text="${question.id}"></td>
+                        </div>
+                        <div class="questionText">
+                            Question is
+                            <td th:text="${question.txt}"></td>
+                        </div>
+                    </tr>
+                    <br>
+                        <form action="#" th:action="@{/answer}" th:object="${answerDTO}" th:method="post">
+                            <label>Fill the response </label>
+                            <input type="text" th:field="*{answer}" placeholder="your answer" required="required">
+                            <input type="hidden" th:value="${question.id}" th:attr="name='id_question'"/>
+                            <button type="submit">Save</button>
+                        </form>
+                    </br>
+                </div>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+

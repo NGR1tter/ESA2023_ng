@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<head>
+    <h1 align="center" valign="middle">Welcome on my lab 2 - Questions platform</h1>
+    <a th:href="@{/}">HOME</a>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body align="center" valign="middle">
+
+<div align="center" valign="middle">
+    <tbody >
+        <tr th:each="question : ${questions}">
+            <div class="containerQuestion" align="center" valign="middle">
+                <div>
+                    <span> ID Question: </span><td th:text="${question.id}"></td>
+                </div>
+                <div>
+                    <span> Question is </span><td th:text="${question.txt}"></td>
+                </div>
+            </div>
+        </tr>
+    </tbody>
+</div>
+
+    <div class="createQuestion" align="center" valign="middle">
+        <span> You can create a Question </span>
+        <form action="#" th:action="@{/addquestion}" th:object="${questionDTO}" method="post">
+            <p>Text: <input type="text" th:field="*{txt}" required="required" />
+                <button type="submit">Save</button>
+            </p>
+        </form>
+    </div>
+<div th:if="${not #lists.isEmpty(questions)}">
+    <div class="container-delete">
+        <div class="question-input">
+            <p>
+                You can delete question. Select ID to delete it!
+            </p>
+            <form action="#" th:action="@{/deleteQuestion}" th:object="${question}" th:method="delete">
+                <input type="number" th:field="*{id}" placeholder="Id" required="required">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
