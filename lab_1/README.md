@@ -8,8 +8,8 @@ Lab 1 - JavaEE Покемоны
 
 Связи в бд
 
-![img_1.png](src/main/resources/pictures/Демонстрация работы 1.png)
+(src/main/resources/pictures/Демонстрация работы 1.png)
 
 Результаты работы
 
-![img.png](src/main/resources/pictures/Демонстрация работы 2.png)
+(src/main/resources/pictures/Демонстрация работы 2.png)
